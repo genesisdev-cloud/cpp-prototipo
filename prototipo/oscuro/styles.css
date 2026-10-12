@@ -106,26 +106,7 @@ html[lang="ko"] .eyebrow,html[lang="ko"] .pilar-cita{letter-spacing:.04em;}
   position:relative;
   display:flex;align-items:center;justify-content:center;
   min-height:calc(100vh - 70px);padding:56px 24px 64px;
-  background:var(--bg);overflow:hidden;
-}
-/* Fondo del inicio: dos fotos que se cruzan cada 7 s */
-.hero-slides{position:absolute;inset:0;z-index:0;}
-.hero-slides div{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:0;animation:hero-fade 14s ease-in-out infinite;
-}
-.hero-slides div:nth-child(1){background-image:url("../../assets/img/Sección de inicio/Edificio del colegio.jpg");}
-.hero-slides div:nth-child(2){background-image:url("../../assets/img/Sección de inicio/Jardín y micro del colegio.jpg");animation-delay:7s;}
-@keyframes hero-fade{0%{opacity:0;}9%{opacity:1;}50%{opacity:1;}59%{opacity:0;}100%{opacity:0;}}
-/* velo blanco hueso para que el escudo se lea */
-.hero-dark::before{
-  content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(circle at 50% 48%, rgba(246,242,232,.90) 0, rgba(246,242,232,.78) 32%, rgba(246,242,232,.58) 64%, rgba(246,242,232,.48) 100%);
-}
-.hero-dark::after{z-index:3;}
-@media (prefers-reduced-motion:reduce){
-  .hero-slides div{animation:none;}
-  .hero-slides div:first-child{opacity:1;}
+  background:var(--bg);
 }
 .hero-dark::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
