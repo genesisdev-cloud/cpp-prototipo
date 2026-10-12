@@ -1,0 +1,21 @@
+# Sistema
+.DS_Store
+.vscode/
+.claude/
+.codex/
+.agents/
+
+# DOCUMENTACIÓN INTERNA CON CONTRASEÑAS: nunca subir
+Documentación Técnica*.pdf
+assets/Documentaciones/
+
+# Material de trabajo (pesado o con fotos de menores)
+assets/fotos-wordpress-original/
+sitio-cpp/
+publicar/
+prototipo/propuesta-ui/
+Mapeo_Cpp.png
+
+# Archivos generados (se arman con zip, ver README)
+*.zip
+_t_*.html

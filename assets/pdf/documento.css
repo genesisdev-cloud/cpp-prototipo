@@ -1,0 +1,52 @@
+/* Hoja base de los PDF del colegio: membrete (arriba) y datos de Admisiones (abajo) */
+@page{size:A4;margin:0}
+:root{--verde:#1E5631;--verde-oscuro:#153F24;--dorado:#C99A2E;--texto:#1F2A22;--suave:#4B564D;--borde:rgba(21,63,36,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm;height:297mm;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hoja{position:relative;width:210mm;height:297mm;overflow:hidden;background:#fff;font-family:'Bitter','Noto Serif KR',serif;color:var(--texto)}
+
+/* franjas: la misma del borde del inicio del sitio (verde 78 % + dorado 22 %) */
+.franja{position:absolute;left:0;right:0;height:6mm;background:linear-gradient(90deg,var(--verde) 0 78%,var(--dorado) 78% 100%)}
+.franja.sup{top:0}
+.franja.inf{bottom:0}
+
+/* membrete */
+.membrete{position:absolute;top:17mm;left:20mm;right:20mm;padding-bottom:7mm;border-bottom:.35mm solid var(--borde)}
+.membrete img{height:32mm;width:auto;display:block}
+.membrete::after{content:"";position:absolute;left:0;bottom:-.35mm;width:28mm;height:.7mm;background:var(--dorado)}
+
+/* pie de admisiones */
+.pie{position:absolute;left:20mm;right:20mm;bottom:15mm;padding-top:6mm;border-top:.35mm solid var(--borde)}
+.pie::before{content:"";position:absolute;left:0;top:-.35mm;width:28mm;height:.7mm;background:var(--dorado)}
+.pie .rotulo{font-weight:700;font-size:7.5pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:3mm}
+.pie .datos{display:flex;align-items:center}
+.pie .dato{display:flex;align-items:center;gap:2.6mm;font-family:'Questrial','Noto Sans KR',sans-serif;font-size:11.5pt;color:var(--verde-oscuro);letter-spacing:.01em}
+.pie .dato:first-child{width:66mm}          /* el correo arranca más a la derecha */
+.pie svg{width:4.6mm;height:4.6mm;color:var(--verde);flex:none}
+
+/* área de contenido entre membrete y pie */
+.contenido{position:absolute;top:68mm;left:20mm;right:20mm;bottom:50mm}
+.eyebrow{font-weight:700;font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:3mm}
+h1{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:27pt;line-height:1.1;color:var(--verde-oscuro);letter-spacing:-.01em;padding-left:5mm;border-left:1.1mm solid var(--dorado);margin-bottom:8mm}
+h2{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:16pt;color:var(--verde);margin:0 0 3.6mm;padding-bottom:2mm;border-bottom:.3mm solid var(--borde)}
+p,li{font-size:11.8pt;line-height:1.5}
+a{color:var(--verde);text-decoration:underline;text-underline-offset:.5mm}
+.bloque{margin-bottom:8mm}
+
+/* listas */
+ul.vi{list-style:none}
+ul.vi li{position:relative;padding:1.6mm 0 1.6mm 6.5mm}
+ul.vi li::before{content:"";position:absolute;left:0;top:3.7mm;width:2.1mm;height:2.1mm;background:var(--dorado)}
+ol.pasos{list-style:none;counter-reset:p}
+ol.pasos li{counter-increment:p;position:relative;padding:1.3mm 0 1.3mm 10mm}
+ol.pasos li::before{content:counter(p);position:absolute;left:0;top:1.5mm;width:6.2mm;height:6.2mm;background:var(--verde);color:#fff;font-family:'Questrial','Noto Sans KR',sans-serif;font-size:10pt;line-height:6.2mm;text-align:center}
+.nota{display:block;color:var(--suave);font-size:10.2pt;line-height:1.4}
+.destacado{border-left:1.1mm solid var(--dorado);background:#F6F2E8;padding:4mm 4mm 4mm 5mm;margin-bottom:7mm}
+.destacado p{font-size:10.6pt}
+ul.check{list-style:none}
+ul.check li{position:relative;padding:2.1mm 0 2.1mm 9mm;border-bottom:.2mm solid var(--borde)}
+ul.check li:last-child{border-bottom:0}
+ul.check li::before{content:"";position:absolute;left:0;top:3.1mm;width:4.6mm;height:4.6mm;border:.45mm solid var(--verde)}
+
+/* coreano: no cortar palabras a la mitad */
+html[lang="ko"] body{word-break:keep-all;line-break:strict;}

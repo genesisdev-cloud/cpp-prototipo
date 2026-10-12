@@ -1,0 +1,36 @@
+/* Carrusel curvo de niveles (CPP). Sin dependencias.
+   Personalizable con variables CSS en .tgh:
+   --tgh-altura, --tgh-altura-movil, --tgh-tinta, --tgh-fondo-tile, --tgh-fuente */
+.tgh{
+  position:relative;overflow:hidden;width:100%;
+  container-type:size;                       /* habilita las unidades cqw / cqh */
+  height:var(--tgh-altura,560px);
+}
+.tgh-band{
+  position:absolute;inset:0;pointer-events:none;
+  opacity:0;transition:opacity .5s ease;     /* aparece cuando el JS midió el alto */
+}
+.tgh-tile{backface-visibility:visible;}
+.tgh-slice{position:absolute;top:0;overflow:hidden;background:var(--tgh-fondo-tile,#EDE8DA);}
+.tgh-slice img{display:block;user-select:none;-webkit-user-drag:none;}
+.tgh-cap{
+  position:absolute;left:0;right:0;top:calc(100% + 1.1em);
+  text-align:center;white-space:nowrap;line-height:1.2;letter-spacing:-.005em;
+  font-family:var(--tgh-fuente,inherit);font-size:clamp(1rem,2.3cqw,1.45rem);
+  color:var(--tgh-tinta,#153F24);
+}
+.tgh.is-off .tgh-tile{animation-play-state:paused;}   /* no gasta recursos fuera de pantalla */
+
+/* texto de cada nivel, debajo del carrusel (también lo leen los buscadores y lectores de pantalla) */
+.tgh-niveles{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  max-width:1160px;margin:48px auto 0;
+}
+.tgh-niveles article{border-top:3px solid var(--tgh-acento,#C99A2E);padding-top:18px;}
+.tgh-niveles h3{font-family:var(--tgh-fuente,inherit);font-weight:400;font-size:1.6rem;color:var(--tgh-tinta,#153F24);margin:0 0 10px;}
+.tgh-niveles p{margin:0 0 6px;line-height:1.6;}
+
+@media (max-width:768px){
+  .tgh{height:var(--tgh-altura-movil,340px);}
+  .tgh-niveles{grid-template-columns:1fr;gap:26px;margin-top:36px;}
+}

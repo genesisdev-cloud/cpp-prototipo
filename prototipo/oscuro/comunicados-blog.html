@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comunicados y Blog — Colegio Presbiteriano del Paraguay</title>
+<title>Comunicados y Blog | Colegio Presbiteriano del Paraguay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Bitter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,8 +19,27 @@
     <nav>
       <ul id="menu">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="admision.html">Admisión</a></li>
-        <li><a href="quienes-somos.html">Institucional</a></li>
+        <li class="has-sub">
+          <a href="admision.html">Admisión</a>
+          <button type="button" class="sub-toggle" aria-expanded="false" aria-label="Mostrar el submenú de Admisión"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>
+          <ul class="submenu">
+            <li><a href="admision.html">Admisión</a></li>
+            <li><a href="oferta-formativa.html">Oferta formativa</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="quienes-somos.html">Institucional</a>
+          <button type="button" class="sub-toggle" aria-expanded="false" aria-label="Mostrar el submenú de Institucional"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>
+          <ul class="submenu">
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="el-colegio.html">El colegio</a></li>
+            <li><a href="historia.html">Nuestra historia</a></li>
+            <li><a href="nuestro-emblema.html">Nuestro emblema</a></li>
+            <li><a href="instalaciones.html">Instalaciones</a></li>
+            <li><a href="capellania.html">Capellanía</a></li>
+            <li><a href="direccion-personal.html">Dirección y personal</a></li>
+          </ul>
+        </li>
         <li><a href="comunicados-blog.html" class="current">Comunicados y Blog</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
@@ -28,7 +47,6 @@
     <div class="top-social">
       <a href="https://www.facebook.com/CPPEDUPY/" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V6.5A1.5 1.5 0 0 1 14.5 5H17V1h-2.5A5.5 5.5 0 0 0 9 6.5V9H6v4h3v9Z"/></svg></a>
       <a href="https://www.instagram.com/colegiopresbiterianopy/" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
-      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.5.4A3 3 0 0 0 2.4 7.3C2 8.8 2 12 2 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 0 0 2.1-2.1c.4-1.5.4-4.7.4-4.7ZM10 15.3V8.7l5.8 3.3Z"/></svg></a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -37,7 +55,7 @@
 </header>
 
 <section class="page-banner-dark">
-  <img src="assets/img-seccion-admision-educacion-media-trofeo.jpg" alt="" class="hero-bg">
+  <img src="../../assets/img/Sección admisión/Educación Media - trofeo.jpg" alt="" class="hero-bg">
   <div class="hero-overlay"></div>
   <div class="page-banner-content">
     <div class="breadcrumb"><a href="index.html">Inicio</a> / Comunicados y Blog</div>
@@ -51,16 +69,16 @@
   <div class="news-head">
     <span class="news-title"><i></i>Comunicados.</span>
     <span class="news-subtitle">Centro de comunicación · Novedades del CPP</span>
-    <p>Esta sección fusiona "Noticias" y "Blog" del menú anterior en una sola. El último contenido real publicado es de 2020 — hay que retomar la carga de novedades.</p>
+    <p>Esta sección fusiona "Noticias" y "Blog" del menú anterior en una sola. El último contenido real publicado es de 2020. Hay que retomar la carga de novedades.</p>
   </div>
 
   <div class="news-grid">
-    <div class="news-card news-card--photo" style="background-image:url('assets/img-seccion-admision-escolar-basica-recreo.jpg')">
+    <div class="news-card news-card--photo" style="background-image:url('../../assets/img/Sección admisión/Escolar Básica - recreo.jpg')">
       <span class="news-tag">Hoy</span>
       <h3>Cierre del Nivel Inicial: fecha y horarios confirmados</h3>
       <a href="#" class="news-link">Leer más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
-    <div class="news-card news-card--photo" style="background-image:url('assets/img-seccion-admision-nivel-inicial-clase.jpg')">
+    <div class="news-card news-card--photo" style="background-image:url('../../assets/img/Sección admisión/Nivel Inicial - clase.jpg')">
       <span class="news-tag">Blog</span>
       <h3>Así viven los más pequeños su primer año en el CPP</h3>
       <a href="#" class="news-link">Leer más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -72,18 +90,13 @@
     </div>
     <div class="news-card news-widget">
       <span class="widget-label">Comunicado</span>
-      <p>Protocolo actualizado de ingreso y salida — Escolar Básica.</p>
+      <p>Protocolo actualizado de ingreso y salida de Escolar Básica.</p>
       <a href="#" class="news-link">Leer más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
-    <div class="news-card news-card--photo news-card--wide" style="background-image:url('assets/img-seccion-comunicados-alumnos-presentacion.jpg')">
+    <div class="news-card news-card--photo news-card--wide" style="background-image:url('../../assets/img/Sección comunicados/Alumnos presentación.jpg')">
       <span class="news-tag">Aviso</span>
-      <h3>Reunión general de padres — Escolar Básica y Media</h3>
+      <h3>Reunión general de padres de Escolar Básica y Media</h3>
       <a href="#" class="news-link">Leer más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="news-card news-cta">
-      <span class="widget-label">Admisión 2027</span>
-      <h3>¡Sumate a la familia del CPP!</h3>
-      <a href="admision.html" class="btn-dark btn-dark--light">Inscribirme ahora</a>
     </div>
   </div>
 </section>
@@ -91,22 +104,32 @@
 <footer class="footer-dark">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="index.html" class="footer-logo" aria-label="Colegio Presbiteriano del Paraguay — Inicio">
-        <img src="assets/logo-logo.png" alt="Escudo del Colegio Presbiteriano del Paraguay">
+      <a href="index.html" class="footer-logo" aria-label="Colegio Presbiteriano del Paraguay, ir al inicio">
+        <img src="../../assets/logo/LOGO.png" alt="Escudo del Colegio Presbiteriano del Paraguay">
       </a>
       <div class="iso-block">
-        <img class="une-logo" src="assets/logo-une-normalizacion-claro.png" alt="UNE — Normalización Española" loading="lazy">
+        <img class="une-logo" src="../../assets/logo/une-normalizacion-claro.png" alt="UNE, Normalización Española" loading="lazy">
         <ul class="iso-list" aria-label="Normas de gestión">
-          <li><img src="assets/logo-iso-9001.png" alt="UNE-EN ISO 9001:2015 — Sistema de gestión de la calidad" title="UNE-EN ISO 9001:2015" loading="lazy"></li>
-          <li><img src="assets/logo-iso-14001.png" alt="UNE-EN ISO 14001:2015 — Sistema de gestión ambiental" title="UNE-EN ISO 14001:2015" loading="lazy"></li>
+          <li><img src="../../assets/logo/iso-9001.png" alt="UNE-EN ISO 9001:2015, sistema de gestión de la calidad" title="UNE-EN ISO 9001:2015" loading="lazy"></li>
+          <li><img src="../../assets/logo/iso-14001.png" alt="UNE-EN ISO 14001:2015, sistema de gestión ambiental" title="UNE-EN ISO 14001:2015" loading="lazy"></li>
         </ul>
       </div>
+    </div>
+    <div>
+      <h4>Ubicación y contacto</h4>
+      <ul>
+        <li>Avda. Cap. Andrés Insfrán y Tomás Ozuna, Isla Bogado, Luque</li>
+        <li><a href="https://maps.app.goo.gl/iaVXZvHp8sQdpRZv5" target="_blank" rel="noopener">Cómo llegar ↗</a></li>
+        <li>Recepción <a href="tel:+595991821113">+595 991 821 113</a></li>
+        <li><a href="mailto:info@colegiocpp.com">info@colegiocpp.com</a></li>
+      </ul>
     </div>
     <div>
       <h4>Institucional</h4>
       <ul>
         <li><a href="quienes-somos.html">Institucional</a></li>
         <li><a href="admision.html">Admisión</a></li>
+        <li><a href="oferta-formativa.html">Oferta formativa</a></li>
         <li><a href="comunicados-blog.html">Comunicados y Blog</a></li>
       </ul>
     </div>
@@ -115,7 +138,6 @@
     <span>© 2026 Colegio Presbiteriano del Paraguay</span>
     <nav class="footer-legal" aria-label="Información legal">
       <a href="#">Aviso Legal</a>
-      <a href="#">Política de Cookies</a>
       <a href="#">Política Ambiental y de Calidad</a>
       <a href="#">Política de Privacidad</a>
     </nav>
@@ -131,5 +153,8 @@
     toggle.setAttribute('aria-expanded', isOpen);
   });
 </script>
+<script src="i18n/translations.js"></script>
+<script src="i18n/i18n.js"></script>
+<script src="nav.js" defer></script>
 </body>
 </html>
