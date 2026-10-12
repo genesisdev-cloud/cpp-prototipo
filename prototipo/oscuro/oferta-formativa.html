@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oferta formativa | Colegio Presbiteriano del Paraguay</title>
+<link rel="icon" type="image/png" href="../../assets/logo/favicon-64.png">
+<link rel="apple-touch-icon" href="../../assets/logo/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Bitter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -220,62 +222,6 @@
     const isOpen = menu.classList.toggle('open');
     toggle.setAttribute('aria-expanded', isOpen);
   });
-
-  // Admisiones: formulario + PDF (en producción el PDF lo genera el servidor y llega por correo)
-  const admForm = document.getElementById('admForm');
-  const admOk = document.getElementById('admOk');
-  let admDoc = null, admRef = '';
-  const admLoad = (src) => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
-  async function admPdf(d, ref) {
-    if (!window.jspdf) await admLoad('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-    const doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
-    doc.setFillColor(30, 86, 49); doc.rect(0, 0, 210, 34, 'F');
-    doc.setFillColor(201, 154, 46); doc.rect(0, 34, 210, 2, 'F');
-    try {
-      const blob = await (await fetch('../../assets/logo/LOGO.png')).blob();
-      const url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
-      doc.addImage(url, 'PNG', 14, 5, 22.5, 26);
-    } catch (e) {}
-    doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
-    doc.text('Colegio Presbiteriano del Paraguay', 42, 15);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
-    doc.text('Solicitud de admisión 2027', 42, 22);
-    doc.setFontSize(9); doc.text('Ref. ' + ref + '  ·  ' + new Date().toLocaleString('es-PY'), 42, 28);
-    let y = 50;
-    const bloque = (titulo, filas) => {
-      doc.setTextColor(30, 86, 49); doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
-      doc.text(titulo.toUpperCase(), 14, y); y += 2;
-      doc.setDrawColor(201, 154, 46); doc.setLineWidth(.6); doc.line(14, y, 196, y); y += 7;
-      filas.forEach(([k, v]) => {
-        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(90, 100, 92); doc.text(k, 14, y);
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(31, 42, 34);
-        const lineas = doc.splitTextToSize(v || 'No indicado', 130); doc.text(lineas, 66, y); y += 7 * lineas.length;
-      });
-      y += 6;
-    };
-    bloque('Padre, madre o tutor', [['Nombre y apellido', d.tutor_nombre], ['Vínculo', d.vinculo], ['Teléfono / WhatsApp', d.telefono], ['Correo electrónico', d.correo]]);
-    bloque('Estudiante', [['Nombre y apellido', d.est_nombre], ['Fecha de nacimiento', d.est_nacimiento ? d.est_nacimiento.split('-').reverse().join('/') : ''], ['Nivel al que ingresa', d.nivel], ['Grado o curso', d.grado], ['Colegio de procedencia', d.procedencia]]);
-    bloque('Consulta', [['Comentario', d.mensaje]]);
-    doc.setFontSize(8); doc.setTextColor(120, 128, 122);
-    doc.text('El familiar aceptó el uso de estos datos para contactarlo por la admisión. Documento generado desde colegiocpp.com', 14, 287);
-    return doc;
-  }
-  admForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (admForm.web.value) return;                       // trampa anti-spam
-    const btn = admForm.querySelector('.adm-submit');
-    btn.disabled = true; btn.textContent = 'Enviando…';
-    const d = Object.fromEntries(new FormData(admForm));
-    admRef = 'ADM-2027-' + String(Math.floor(Math.random() * 9000) + 1000);
-    try { admDoc = await admPdf(d, admRef); window.__admDoc = admDoc; } catch (err) { admDoc = null; }
-    document.getElementById('admRef').textContent = admRef;
-    document.getElementById('admPdf').hidden = !admDoc;
-    admForm.hidden = true; admOk.hidden = false;
-    btn.disabled = false; btn.textContent = 'Enviar solicitud';
-    admOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
-  document.getElementById('admPdf').addEventListener('click', () => admDoc && admDoc.save('Solicitud-' + admRef + '.pdf'));
-  document.getElementById('admOtra').addEventListener('click', () => { admForm.reset(); admOk.hidden = true; admForm.hidden = false; });
 </script>
 <script src="i18n/translations.js"></script>
 <script src="i18n/i18n.js"></script>
