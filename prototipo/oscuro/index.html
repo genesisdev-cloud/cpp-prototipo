@@ -18,6 +18,16 @@
 
 <header class="top">
   <div class="top-inner">
+    <a href="index.html" class="top-brand" aria-label="Colegio Presbiteriano del Paraguay, ir al inicio">
+      <span class="logo-assembly top-logo" id="logoAssembly" aria-hidden="true">
+        <img class="pz pz-globo"  src="../../assets/logo/piezas/globo.png"  alt="" style="left:14.2%;top:12.75%;width:71.3%">
+        <img class="pz pz-libro"  src="../../assets/logo/piezas/libro.png"  alt="" style="left:21.45%;top:69.5%;width:55.94%">
+        <img class="pz pz-figura" src="../../assets/logo/piezas/figura.png" alt="" style="left:13.33%;top:28.25%;width:73.33%">
+        <img class="pz pz-texto"  src="../../assets/logo/piezas/texto.png"  alt="" style="left:3.48%;top:3.25%;width:92.17%">
+        <img class="pz pz-paloma" src="../../assets/logo/piezas/paloma.png" alt="" style="left:51.3%;top:11.5%;width:23.48%">
+      </span>
+      <span class="top-brand-name">Colegio Presbiteriano del Paraguay</span>
+    </a>
     <nav>
       <ul id="menu">
         <li><a href="index.html" class="current">Inicio</a></li>
@@ -57,22 +67,16 @@
 </header>
 
 <main>
-  <section class="hero-dark">
-    <div class="hero-stage">
-      <div class="hero-brand">
-      <div class="logo-assembly" id="logoAssembly" role="img" aria-label="Escudo del Colegio Presbiteriano del Paraguay" title="Click para repetir la animación">
-        <img class="pz pz-globo"  src="../../assets/logo/piezas/globo.png"  alt="" style="left:14.2%;top:12.75%;width:71.3%">
-        <img class="pz pz-libro"  src="../../assets/logo/piezas/libro.png"  alt="" style="left:21.45%;top:69.5%;width:55.94%">
-        <img class="pz pz-figura" src="../../assets/logo/piezas/figura.png" alt="" style="left:13.33%;top:28.25%;width:73.33%">
-        <img class="pz pz-texto"  src="../../assets/logo/piezas/texto.png"  alt="" style="left:3.48%;top:3.25%;width:92.17%">
-        <img class="pz pz-paloma" src="../../assets/logo/piezas/paloma.png" alt="" style="left:51.3%;top:11.5%;width:23.48%">
-      </div>
+  <section class="hero-dark" aria-label="Inicio">
+    <div class="hero-slides" aria-hidden="true">
+      <img src="../../assets/img/Sección de inicio/inicio-fondo-1.jpg" alt="" style="--pos:62% 28%;--posm:58% 30%" fetchpriority="high" decoding="async">
+      <img src="../../assets/img/Sección de inicio/inicio-fondo-2.jpg" alt="" style="--pos:50% 14%;--posm:42% 20%" decoding="async">
+      <img src="../../assets/img/Sección de inicio/inicio-fondo-3.jpg" alt="" style="--pos:70% 30%;--posm:74% 30%" decoding="async">
+    </div>
+    <div class="hero-inner">
+      <h1>Admisiones 2027</h1>
       <p class="hero-lema">Formar con propósito. Educar para transformar.</p>
-      </div>
-      <div class="hero-adm">
-        <h2>Admisiones 2027</h2>
-        <a href="admision.html" class="hero-link">Ir a Admisiones <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-      </div>
+      <a href="admision.html" class="hero-link">Ir a Admisiones <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
   </section>
   <section class="pilares" id="pilares" aria-roledescription="carrusel" aria-label="Nuestros pilares">
@@ -112,11 +116,8 @@
           <li><a class="doc" href="oferta-formativa.html">Oferta formativa</a></li>
           <li><a class="doc" href="../../assets/pdf/requisitos-educacion-inicial.pdf" target="_blank" rel="noopener">Requisitos de Educación Inicial</a></li>
           <li><a class="doc" href="../../assets/pdf/requisitos-todos-los-niveles.pdf" target="_blank" rel="noopener">Requisitos de todos los niveles</a></li>
-          <li><span class="doc doc--off" aria-disabled="true" title="Próximamente">Ficha médica para Educación Física</span></li>
+          <li><a class="doc" href="../../assets/pdf/ficha-medica-educacion-fisica.pdf" target="_blank" rel="noopener">Ficha médica para Educación Física</a></li>
         </ul>
-      </div>
-      <div class="adm-cta-side">
-        <img src="../../assets/img/Sección de inicio/Admisiones - ilustración.png" alt="" aria-hidden="true" loading="lazy" width="1000" height="1000">
       </div>
     </div>
   </section>
@@ -174,23 +175,16 @@
     toggle.setAttribute('aria-expanded', isOpen);
   });
 
-  // Click en el escudo: las piezas se separan y vuelven a unirse
-  const logo = document.getElementById('logoAssembly');
-  logo.addEventListener('click', () => {
-    const pz = logo.querySelectorAll('.pz');
-    pz.forEach(p => p.style.animation = 'none');
-    void logo.offsetWidth;
-    pz.forEach(p => p.style.animation = '');
-  });
-
-  // Pilares: carrusel que desliza solo cada 10 s (sin puntos). Arranca al verse y pausa si la pestaña se oculta.
+  // Pilares: carrusel que desliza solo cada 6 s (sin puntos). Arranca al verse y pausa si la pestaña se oculta.
   (function () {
     const sec = document.getElementById('pilares');
     const track = document.getElementById('pilaresTrack');
     const slides = [...track.children];
     const bar = sec.querySelector('.pilares-progress span');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    const N = slides.length, DUR = 10000;
+    const N = slides.length, DUR = 6000, SLIDE = 700;   // cada pilar queda 6 s; el deslizamiento dura 0,7 s
+    bar.style.animationDuration = DUR + 'ms';
+    track.style.transitionDuration = SLIDE + 'ms';
     let i = 0, timer = null, visible = false;
     if (reduce.matches) return;                        // sin movimiento: se muestran apilados (CSS)
 
@@ -209,7 +203,7 @@
           track.style.transition = 'none'; i = 0;
           track.style.transform = 'translateX(0%)';
           void track.offsetWidth; track.style.transition = '';
-        }, 950);
+        }, SLIDE + 50);
       } else {
         i = n; mark(n);
         track.style.transform = 'translateX(' + (-n * 100) + '%)';

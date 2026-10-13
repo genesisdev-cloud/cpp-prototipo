@@ -12,7 +12,13 @@ html,body{width:210mm;height:297mm;background:#fff;-webkit-print-color-adjust:ex
 
 /* membrete */
 .membrete{position:absolute;top:17mm;left:20mm;right:20mm;padding-bottom:7mm;border-bottom:.35mm solid var(--borde)}
-.membrete img{height:32mm;width:auto;display:block}
+.membrete{display:flex;align-items:center;justify-content:space-between;gap:10mm}
+.membrete .m-cpp{height:32mm;width:auto;display:block;flex:none}
+/* logos oficiales (MEC y Gobierno del Paraguay), uno al lado del otro, a la derecha */
+.membrete .m-oficial{display:flex;flex-direction:row;align-items:center;gap:5mm}
+.membrete .m-oficial img{width:auto;display:block}
+.membrete .m-mec{height:9mm}
+.membrete .m-gob{height:7.7mm;padding-left:5mm;border-left:.3mm solid var(--borde);box-sizing:content-box}
 .membrete::after{content:"";position:absolute;left:0;bottom:-.35mm;width:28mm;height:.7mm;background:var(--dorado)}
 
 /* pie de admisiones */
@@ -50,3 +56,19 @@ ul.check li::before{content:"";position:absolute;left:0;top:3.1mm;width:4.6mm;he
 
 /* coreano: no cortar palabras a la mitad */
 html[lang="ko"] body{word-break:keep-all;line-break:strict;}
+
+/* formularios para completar a mano (ficha médica): campos con línea de puntos */
+.f-h1{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:22pt;line-height:1.1;color:var(--verde-oscuro);letter-spacing:-.01em;padding-left:5mm;border-left:1.1mm solid var(--dorado);margin-bottom:5mm}
+.form h2{font-size:12.5pt;margin:0 0 3mm;padding-bottom:1.4mm}
+.form h3{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:10.6pt;color:var(--verde-oscuro);margin:3.2mm 0 1.2mm;letter-spacing:.01em}
+.form h3 .nota{display:inline;font-family:'Bitter',serif;font-size:8.6pt;color:var(--suave);margin-left:1.5mm}
+.form p{font-size:10pt;line-height:1.5}
+.fila{display:flex;gap:6mm;margin-bottom:2.9mm}
+.c{display:flex;align-items:flex-end;gap:2mm;flex:1;min-width:0;font-size:9.8pt;line-height:1.2}
+.c b{font-weight:400;white-space:nowrap;color:var(--texto)}
+.c i{flex:1;height:6mm;border-bottom:.3mm dotted var(--suave)}
+.c.g2{flex:2}.c.g3{flex:3}
+.linea{height:6.8mm;border-bottom:.3mm dotted var(--suave)}
+.form .bloque{margin-bottom:4.6mm}
+.form .bloque:last-child{margin-bottom:0}
+.pie .pag{position:absolute;right:0;bottom:0;font-family:'Questrial','Noto Sans KR',sans-serif;font-size:9pt;color:var(--suave);letter-spacing:.06em}
