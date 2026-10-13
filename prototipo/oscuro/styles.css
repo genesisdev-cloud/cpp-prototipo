@@ -112,7 +112,31 @@ html[lang="ko"] .eyebrow,html[lang="ko"] .pilar-cita{letter-spacing:.04em;}
   content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
   background:linear-gradient(90deg, var(--verde) 0 78%, var(--dorado) 78% 100%);
 }
-.hero-stage{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3vh,32px);}
+.hero-stage{position:relative;z-index:2;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:clamp(48px,8vw,120px);}
+.hero-brand{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,3vh,32px);}
+.hero-adm{max-width:440px;animation:lema-in 1s ease 3.1s both;}
+.hero-adm h2{
+  font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;line-height:1.05;letter-spacing:-.01em;
+  font-size:clamp(2.4rem,4.4vw,3.8rem);color:var(--verde-oscuro);
+  padding-left:22px;border-left:4px solid var(--dorado);margin-bottom:26px;
+}
+.hero-link{
+  display:inline-flex;align-items:center;gap:12px;margin-left:26px;padding:6px 0;
+  font-family:'Questrial','Noto Sans KR',sans-serif;font-size:clamp(1.1rem,1.6vw,1.3rem);letter-spacing:.02em;
+  color:var(--verde);border-bottom:1.5px solid transparent;
+  transition:color 200ms ease,border-color 200ms ease;
+}
+.hero-link:hover,.hero-link:focus-visible{color:var(--verde-oscuro);border-bottom-color:var(--dorado);}
+.hero-link svg{flex:none;transition:transform 200ms ease;}
+.hero-link:hover svg{transform:translateX(5px);}
+.hero-stage .logo-assembly{height:clamp(260px,min(56vh,40vw),520px);}   /* de costado: el escudo se adapta al ancho */
+.hero-adm{flex:0 1 auto;min-width:0;}
+@media (max-width:760px){
+  .hero-stage{flex-direction:column;gap:clamp(28px,5vh,44px);}
+  .hero-adm{width:min(440px,100%);}
+  .hero-stage .logo-assembly{height:clamp(260px,44vh,420px);}
+}
+@media (prefers-reduced-motion:reduce){.hero-adm{animation:none;}}
 .hero-lema{
   max-width:34ch;text-align:center;
   font-family:'Questrial','Noto Sans KR',sans-serif;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.45;
@@ -197,7 +221,7 @@ html[lang="ko"] .eyebrow,html[lang="ko"] .pilar-cita{letter-spacing:.04em;}
 }
 .btn-adm{margin-top:0;justify-content:center;padding:20px 40px;font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:1.1rem;letter-spacing:.02em;gap:12px;}
 .btn-adm svg{transition:transform 200ms ease;}
-.adm-docs{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:34px;}
+.adm-docs{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:0;}
 .doc{
   display:inline-block;padding:5px 0;border-bottom:1.5px solid transparent;
   font-family:'Questrial','Noto Sans KR',sans-serif;font-size:1.25rem;line-height:1.35;color:var(--verde-oscuro);

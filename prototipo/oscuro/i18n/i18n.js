@@ -1,25 +1,25 @@
 /*!
- * Motor de idiomas del sitio del Colegio Presbiteriano del Paraguay (ES / EN / KO).
+ * Motor de idiomas del sitio del Colegio Presbiteriano del Paraguay (ES / EN / KO / PT).
  * El HTML se escribe en español (idioma base). Este script cambia los textos según
  * el idioma elegido usando el diccionario de i18n/translations.js:
- *   window.CPP_I18N = { en: { "Texto en español": "English text" }, ko: { ... } }
- * Idioma: ?lang=en | ?lang=ko | ?lang=es  (se recuerda en el navegador).
+ *   window.CPP_I18N = { en: { "Texto en español": "English text" }, ko: { ... }, pt: { ... } }
+ * Idioma: ?lang=en | ?lang=ko | ?lang=pt | ?lang=es  (se recuerda en el navegador).
  * Otros scripts pueden usar window.cppT("texto en español") y escuchar el evento "cpp:lang".
  */
 (function () {
   'use strict';
 
   var STORE = 'cpp-lang';
-  var LANGS = ['es', 'en', 'ko'];
-  var LABEL = { es: 'ES', en: 'EN', ko: '한국어' };
-  var GROUP = { es: 'Idioma', en: 'Language', ko: '언어' };
-  var NAME = { es: 'Español', en: 'English', ko: '한국어' };
+  var LANGS = ['es', 'en', 'ko', 'pt'];
+  var LABEL = { es: 'ES', en: 'EN', ko: '한국어', pt: 'PT' };
+  var GROUP = { es: 'Idioma', en: 'Language', ko: '언어', pt: 'Idioma' };
+  var NAME = { es: 'Español', en: 'English', ko: '한국어', pt: 'Português' };
   var INLINE = { A: 1, STRONG: 1, B: 1, EM: 1, I: 1, SPAN: 1, SMALL: 1, BR: 1, SUP: 1, SUB: 1, SVG: 1, ABBR: 1, MARK: 1, U: 1 };
   var SKIP = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, SVG: 1, TEXTAREA: 1, CODE: 1, PRE: 1, IFRAME: 1 };
   var ATTRS = ['placeholder', 'title', 'alt', 'aria-label', 'aria-roledescription', 'data-close'];
   var SVG_TOKEN = '⟦svg⟧';
 
-  var dict = window.CPP_I18N || { en: {}, ko: {} };
+  var dict = window.CPP_I18N || { en: {}, ko: {}, pt: {} };
   var lang = 'es';
   var store = new WeakMap();          // original (español) de cada nodo o elemento
   var attrStore = new WeakMap();      // originales de atributos
@@ -126,7 +126,7 @@
     // enlaces a PDF en el idioma elegido
     var pdfs = document.querySelectorAll('a[href*="assets/pdf/requisitos-"]');
     for (i = 0; i < pdfs.length; i++) {
-      var base = pdfs[i].getAttribute('data-pdf') || pdfs[i].getAttribute('href').replace(/-(en|ko)\.pdf$/, '.pdf');
+      var base = pdfs[i].getAttribute('data-pdf') || pdfs[i].getAttribute('href').replace(/-(en|ko|pt)\.pdf$/, '.pdf');
       pdfs[i].setAttribute('data-pdf', base);
       pdfs[i].setAttribute('href', l === 'es' ? base : base.replace(/\.pdf$/, '-' + l + '.pdf'));
     }
@@ -168,7 +168,7 @@
 
   /* ---- 5. arranque ------------------------------------------------------ */
   function pick() {
-    var m = /[?&]lang=(es|en|ko)\b/.exec(location.search);
+    var m = /[?&]lang=(es|en|ko|pt)\b/.exec(location.search);
     if (m) return m[1];
     try { var s = localStorage.getItem(STORE); if (LANGS.indexOf(s) >= 0) return s; } catch (e) {}
     return 'es';
