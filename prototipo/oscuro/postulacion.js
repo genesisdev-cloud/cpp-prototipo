@@ -137,14 +137,43 @@
     return (bytes / 1048576).toLocaleString(lang, { maximumFractionDigits: 1 }) + ' MB';
   }
   function esPdf(f) { return f.type === 'application/pdf' || /\.pdf$/i.test(f.name); }
-  function esImg(f) { return f.type.indexOf('image/') === 0 || /\.(jpe?g|png|webp|heic)$/i.test(f.name); }
+  function esImg(f) { return f.type.indexOf('image/') === 0 || /\.(jpe?g|png|webp)$/i.test(f.name); }   // sin HEIC: el iPhone convierte a JPG solo cuando el formulario no lo acepta
 
-  function revisarArchivo(input, f) {
-    if (f.size > MAX_MB * 1048576) return 'El archivo supera los 5 MB.';
+  function revisarTipo(input, f) {
     var acc = input.accept, pdf = acc.indexOf('pdf') >= 0, img = acc.indexOf('image') >= 0;
     if ((pdf && esPdf(f)) || (img && esImg(f))) return '';
     if (pdf && img) return 'Formato no permitido. Usá PDF, JPG o PNG.';
     return pdf ? 'Formato no permitido. Usá un archivo PDF.' : 'Formato no permitido. Usá una foto JPG o PNG.';
+  }
+  function revisarArchivo(input, f) {
+    if (f.size > MAX_MB * 1048576) return 'El archivo supera los 5 MB.';
+    return revisarTipo(input, f);
+  }
+
+  /* Las fotos de un celular moderno pesan 5 a 12 MB. Se reducen al elegirlas (lado máximo 1800 px, JPG) para que
+     el envío sea rápido y entren en el límite. Los PDF no se tocan. */
+  var MAX_LADO = 1800, CALIDAD = 0.82, UMBRAL = 1.2 * 1048576, MAX_ORIGINAL = 30 * 1048576;
+  function reducirFoto(f) {
+    return new Promise(function (resolver) {
+      if (!window.createImageBitmap) return resolver(f);
+      function hecho(bm) {
+        var w = bm.width, h = bm.height, k = Math.min(1, MAX_LADO / Math.max(w, h));
+        if (k === 1 && f.size <= UMBRAL && f.type === 'image/jpeg') { if (bm.close) bm.close(); return resolver(f); }
+        var c = document.createElement('canvas');
+        c.width = Math.round(w * k); c.height = Math.round(h * k);
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);     // fondo blanco por si la foto era PNG con transparencia
+        ctx.drawImage(bm, 0, 0, c.width, c.height);
+        if (bm.close) bm.close();
+        c.toBlob(function (b) {
+          if (!b || (k === 1 && b.size >= f.size)) return resolver(f);
+          resolver(new File([b], f.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg', lastModified: Date.now() }));
+        }, 'image/jpeg', CALIDAD);
+      }
+      createImageBitmap(f, { imageOrientation: 'from-image' }).then(hecho, function () {
+        createImageBitmap(f).then(hecho, function () { resolver(f); });
+      });
+    });
   }
 
   function limpiarSlot(slot) {
@@ -166,7 +195,7 @@
     box.className = 'up-file';
     box.style.cssText = 'display:flex;align-items:center;gap:13px;min-width:0;flex:1';
     var vista;
-    if (esImg(f) && !/heic$/i.test(f.name) && f.type !== 'image/heic') {
+    if (esImg(f)) {
       vista = document.createElement('img'); vista.className = 'up-thumb'; vista.alt = ''; vista.src = URL.createObjectURL(f);
     } else {
       vista = document.createElement('div'); vista.className = 'up-pdf'; vista.textContent = esPdf(f) ? 'PDF' : 'IMG';
@@ -192,13 +221,29 @@
     var input = slot.querySelector('input[type="file"]');
     var up = slot.closest('.up');
 
+    function rechazar(err) { input.value = ''; limpiarSlot(slot); up.setAttribute('data-bad', '1'); setErr(up, err); }
+    function aceptar(f) { mostrarArchivo(slot, input, f); }
+
     input.addEventListener('change', function () {
       var f = input.files[0];
       up.removeAttribute('data-bad'); clearErr(up);
       if (!f) { limpiarSlot(slot); return; }
-      var err = revisarArchivo(input, f);
-      if (err) { input.value = ''; limpiarSlot(slot); up.setAttribute('data-bad', '1'); setErr(up, err); return; }
-      mostrarArchivo(slot, input, f);
+      var errTipo = revisarTipo(input, f);
+      if (errTipo) return rechazar(errTipo);
+      if (!esImg(f)) {                                   // PDF: se controla tal cual
+        var errTam = revisarArchivo(input, f);
+        return errTam ? rechazar(errTam) : aceptar(f);
+      }
+      if (f.size > MAX_ORIGINAL) return rechazar('El archivo supera los 5 MB.');
+      slot.classList.add('procesando');
+      reducirFoto(f).then(function (nf) {
+        slot.classList.remove('procesando');
+        if (nf !== f) {                                  // la foto reducida reemplaza a la original en el campo
+          try { var dt = new DataTransfer(); dt.items.add(nf); input.files = dt.files; } catch (x) { nf = f; }
+        }
+        var err = revisarArchivo(input, nf);
+        err ? rechazar(err) : aceptar(nf);
+      });
     });
 
     ['dragenter', 'dragover'].forEach(function (ev) {

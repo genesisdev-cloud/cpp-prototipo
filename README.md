@@ -20,19 +20,21 @@ Abrir <http://localhost:8765/prototipo/oscuro/index.html>
 
 | Carpeta | Contenido |
 |---|---|
-| `prototipo/oscuro/` | El sitio: 12 páginas, `styles.css`, `nav.js` y el sistema de idiomas (`i18n/`) |
+| `prototipo/oscuro/` | El sitio: 13 páginas (incluye el formulario de postulación), `styles.css`, `nav.js` y el sistema de idiomas (`i18n/`) |
 | `wordpress/` | Plugins de WordPress: `cpp-niveles` (carrusel curvo) y `cpp-actividades` (tarjetas que se expanden) |
 | `assets/img/` | Fotos del sitio, ya optimizadas, ordenadas por sección |
 | `assets/logo/` | Escudo (versión normal y en alta resolución), piezas del escudo animado, logos ISO y UNE |
-| `assets/pdf/` | PDF de requisitos de admisión y membrete, en español, inglés y coreano (más su HTML) |
+| `firmas/` | Firma de correo del Departamento de Admisiones (HTML y PNG) |
+| `herramientas/documentos/` | Convierte el reglamento, la propuesta y el manual de convivencia a PDF con el diseño del colegio (ver su `LEEME.md`) |
+| `assets/pdf/` | PDF del colegio con membrete (requisitos, ficha médica, propuesta educativa, manual de convivencia) y su HTML. Requisitos y membrete en español, inglés, coreano y portugués |
 
 ## Páginas
 
-Inicio, Admisión, Oferta formativa, Institucional (Quiénes somos, El colegio, Nuestra historia, Nuestro emblema, Instalaciones, Capellanía, Dirección y personal), Comunicados y Blog, y Contacto.
+Inicio, Admisión, Oferta formativa, Institucional (Quiénes somos, El colegio, Nuestra historia, Nuestro emblema, Instalaciones, Capellanía, Dirección y personal), Comunicados y Blog, Contacto y el formulario de postulación (`postulacion.html?ciclo=…`, uno por ciclo). El formulario es solo la interfaz: todavía no se conecta a un servidor.
 
 ## Idiomas
 
-Español, inglés y coreano, con un selector en el encabezado. Cómo funciona y cómo corregir traducciones: `prototipo/oscuro/i18n/LEEME.md`. Las traducciones son un borrador y conviene que las revise una persona de habla nativa.
+Español, inglés, coreano y portugués, con un selector en el encabezado. Cómo funciona y cómo corregir traducciones: `prototipo/oscuro/i18n/LEEME.md`. Las traducciones son un borrador y conviene que las revise una persona de habla nativa.
 
 ## Plugins de WordPress
 

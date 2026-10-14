@@ -1,0 +1,92 @@
+/* Documentos largos (reglamento, propuesta, manual): se apoya en documento.css.
+   Primera hoja: membrete completo + título + índice. Hojas siguientes: encabezado reducido y pie con numeración.
+   Las hojas las arma paginar.js a partir del contenido de #fuente. */
+html,body{height:auto}
+#fuente{display:none}
+.hoja{break-after:page;page-break-after:always}
+.hoja:last-of-type{break-after:auto;page-break-after:auto}
+
+/* ---- encabezado reducido (hojas 2 en adelante) ---- */
+.mini{position:absolute;top:12mm;left:20mm;right:20mm;display:flex;align-items:center;justify-content:space-between;gap:8mm;padding-bottom:4mm;border-bottom:.35mm solid var(--borde)}
+.mini::after{content:"";position:absolute;left:0;bottom:-.35mm;width:22mm;height:.7mm;background:var(--dorado)}
+.mini img{height:13mm;width:auto;display:block}
+.mini .tt{text-align:right;line-height:1.25}
+.mini .tt b{display:block;font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:9.6pt;letter-spacing:.14em;text-transform:uppercase;color:var(--verde)}
+.mini .tt span{font-size:8pt;color:var(--suave)}
+
+/* ---- pie reducido ---- */
+.pie-min{position:absolute;left:20mm;right:20mm;bottom:11mm;display:flex;align-items:center;justify-content:space-between;gap:6mm;padding-top:3mm;border-top:.35mm solid var(--borde);font-family:'Questrial','Noto Sans KR',sans-serif;font-size:8.6pt;color:var(--suave);letter-spacing:.02em}
+.pie-min .a{display:flex;align-items:center;gap:6mm}
+.pie-min .r{font-weight:700;font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado)}
+.pie-min .pn{color:var(--verde-oscuro);font-size:9.4pt}
+.pie .pag{position:absolute;right:0;bottom:0;font-family:'Questrial','Noto Sans KR',sans-serif;font-size:9.4pt;color:var(--verde-oscuro);letter-spacing:.04em}
+
+/* ---- área de contenido ---- */
+.contenido.largo{top:68mm;bottom:50mm}
+.contenido.largo.interior{top:34mm;bottom:25mm}
+.largo p,.largo li{font-size:10.2pt;line-height:1.55;color:var(--texto)}
+.largo p{margin:0 0 2.6mm}
+.largo strong{font-weight:700;color:var(--verde-oscuro)}
+.largo .doc-titulo{margin-bottom:7mm}
+.largo .doc-titulo h1{font-size:25pt;margin-bottom:3mm}
+.largo .doc-titulo .sub{padding-left:6.1mm;color:var(--suave);font-size:10.6pt}
+
+/* títulos numerados */
+.largo h2,.largo h3,.largo h4,.largo h5{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;color:var(--verde-oscuro);line-height:1.2;break-after:avoid}
+.largo h2{font-size:17pt;color:var(--verde);padding-bottom:2mm;margin:5mm 0 3.6mm;border-bottom:.3mm solid var(--borde)}
+.largo h3{font-size:15pt;margin:4.5mm 0 3mm;padding-left:4mm;border-left:1.1mm solid var(--dorado)}
+.largo h4{font-size:12.6pt;color:var(--verde);margin:4mm 0 2.4mm}
+.largo h5{font-size:11pt;margin:3.4mm 0 1.8mm;letter-spacing:.01em}
+.largo h5.sub{color:var(--verde)}
+.largo .n{color:var(--dorado);font-weight:700;margin-right:2.6mm;letter-spacing:.03em}
+.largo .contenido-h{font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;font-size:15pt;color:var(--verde);margin:1mm 0 3mm;padding-bottom:2mm;border-bottom:.3mm solid var(--borde)}
+
+/* listas */
+.largo ul{list-style:none;margin:0 0 2.8mm}
+.largo ul li{position:relative;padding:.7mm 0 .7mm 6mm}
+.largo ul li::before{content:"";position:absolute;left:.4mm;top:2.6mm;width:1.8mm;height:1.8mm;background:var(--dorado)}
+.largo ol{margin:0 0 2.8mm 6mm}
+.largo ol li{padding:.4mm 0 .4mm 1mm}
+.largo ul ul{margin:.6mm 0 .6mm 3mm}
+
+/* figuras y tablas */
+.largo figure{margin:3mm 0 4mm;text-align:center}
+.largo figure img{max-width:100%;max-height:105mm;width:auto;height:auto;display:inline-block;border:.3mm solid var(--borde)}
+.largo figcaption{font-size:8.6pt;color:var(--suave);margin-top:1.4mm}
+.largo table{width:100%;border-collapse:collapse;margin:0 0 4mm;font-size:9.2pt;line-height:1.35}
+.largo th{background:var(--verde-oscuro);color:#F6F2E8;font-family:'Questrial','Noto Sans KR',sans-serif;font-weight:400;text-align:left;padding:2mm 2.4mm;letter-spacing:.02em}
+.largo td{padding:1.7mm 2.4mm;border-bottom:.25mm solid var(--borde);vertical-align:top}
+.largo tr:nth-child(even) td{background:#F8F5EC}
+
+/* índice con puntos guía y números de página */
+.toc{margin:0 0 2mm}
+.toc-i{display:flex;align-items:baseline;gap:2mm;padding:.55mm 0;font-size:9.6pt;line-height:1.3;color:var(--texto)}
+.toc-i .t{flex:none;max-width:84%}
+.toc-i .t .n{color:var(--dorado);font-weight:700;margin-right:1.8mm}
+.toc-i .l{flex:1;border-bottom:.3mm dotted rgba(75,86,77,.55);transform:translateY(-.5mm);min-width:6mm}
+.toc-i .p{flex:none;font-family:'Questrial','Noto Sans KR',sans-serif;color:var(--verde-oscuro);min-width:6mm;text-align:right}
+.toc-i.n1{margin-top:1.4mm;font-weight:700}
+.toc-i.n1 .t{color:var(--verde-oscuro)}
+.toc-i.n2{padding-left:5mm}
+.toc-i.n3{padding-left:11mm;font-size:9.2pt}
+.toc-i.n4{padding-left:17mm;font-size:9pt}
+
+/* ---- propuesta educativa: fórmulas, cierre y líneas con año ---- */
+.largo .formula{margin:3mm 0 4mm;padding:3.4mm 5mm;background:#F6F2E8;border-left:1.1mm solid var(--dorado);font-family:'Questrial','Noto Sans KR',sans-serif;font-size:11.2pt;line-height:1.4;letter-spacing:.03em;color:var(--verde-oscuro)}
+.largo .verso{margin:2mm 0 4mm;padding:1mm 0 1mm 5mm;border-left:.6mm solid var(--dorado);font-style:italic;color:var(--verde-oscuro)}
+.largo .final{margin-top:4mm;font-family:'Questrial','Noto Sans KR',sans-serif;font-size:13pt;line-height:1.4;color:var(--verde);text-align:center}
+.largo h4.anio .n{font-size:15pt}
+
+/* ---- manual: calendario institucional, figuras grandes y resolución ---- */
+.largo table.cal td:first-child{width:26mm;background:#EDE8DA;border-right:.25mm solid var(--borde)}
+.largo table.cal tr:nth-child(even) td{background:inherit}
+.largo table.cal td:last-child{background:#fff}
+.largo figure.resolucion{margin:0;text-align:center}
+.largo figure.resolucion img{max-height:228mm;border:.3mm solid var(--borde)}
+.largo h2 .n + *{}
+
+/* ---- documentación: código y notas técnicas ---- */
+.largo code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em;background:#F3EFE3;padding:0 1mm;border-radius:.6mm;color:var(--verde-oscuro)}
+.largo pre{margin:0 0 4mm;padding:3mm 4mm;background:#F6F2E8;border-left:1mm solid var(--dorado);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.2pt;line-height:1.45;white-space:pre-wrap;color:var(--texto)}
+.largo pre code{background:none;padding:0;font-size:inherit}
+.largo td code,.largo th code{font-size:8pt}

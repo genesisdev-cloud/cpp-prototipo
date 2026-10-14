@@ -19,3 +19,7 @@ Mapeo_Cpp.png
 # Archivos generados (se arman con zip, ver README)
 *.zip
 _t_*.html
+
+# herramientas de conversión: archivos temporales
+herramientas/documentos/_tmp/
+__pycache__/
