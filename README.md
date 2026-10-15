@@ -25,6 +25,7 @@ Abrir <http://localhost:8765/prototipo/canva/index.html>
 | `assets/logo/` | Escudo (normal, en alta resolución y blanco), piezas del escudo animado, logos oficiales y de ISO |
 | `assets/pdf/` | PDF del colegio con membrete (requisitos, ficha médica, propuesta educativa, manual de convivencia) y su HTML |
 | `herramientas/documentos/` | Convierte documentos largos a PDF con el diseño del colegio (ver su `LEEME.md`) |
+| `herramientas/logo/` | Arma la versión blanca del escudo (y sus piezas animadas) desde las piezas a color |
 | `firmas/` | Firma de correo del Departamento de Admisiones (HTML y PNG) |
 
 ## Tipografías y colores

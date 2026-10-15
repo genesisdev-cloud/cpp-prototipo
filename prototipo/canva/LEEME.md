@@ -9,7 +9,7 @@ Abrir: <http://localhost:8765/prototipo/canva/index.html> (con `python3 .claude/
 - `index.html` contiene todo el contenido. Cada elemento lleva sus medidas del diseño en el atributo `style` (`--x`, `--y`, `--w`, `--fs`, `--lh`, en unidades del diseño de 1024 de ancho).
 - `styles.css`: desde 1000 px de ancho la página escala el diseño al ancho de la pantalla (hasta 2560 px) y queda igual al de Canva. Por debajo de 1000 px pasa a un orden vertical pensado para tablet y celular.
 - `app.js`: menú del celular, aviso para los documentos que todavía no están cargados y repetición del efecto del logo.
-- Logo del encabezado: se arma por piezas al cargar la página (globo, libro, figura, texto y paloma, igual que en el diseño anterior) y se repite al tocarlo. Las piezas blancas están en `assets/logo/piezas-blancas/`.
+- Logo del encabezado: se arma por piezas al cargar la página (globo, libro, figura, texto y paloma, igual que en el diseño anterior) y se repite al tocarlo. Las piezas blancas están en `assets/logo/piezas-blancas/` y se generan desde las piezas a color con `herramientas/logo/construir_logo_blanco.py` (también arma `assets/logo/escudo-blanco.png`).
 - Tipografías: Montserrat (la misma del diseño) y Londrina Solid para "#Vení ALCPP". La letra original de ese título ("Balmy") es de Canva y no se puede usar fuera de ahí; Londrina Solid es la más parecida de las gratuitas.
 
 ## Para completar cuando lleguen las fotos y los documentos
